@@ -84,7 +84,5 @@ function generarPalabra() {
     generarBotones()
     ocultarPartes()
   }
-  
-  
-    
+
   reiniciar()
