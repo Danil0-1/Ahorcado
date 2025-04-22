@@ -70,3 +70,21 @@ function generarPalabra() {
       partes[contadorErrores - 1].style.display = "block"
     }
   }
+
+  function ocultarPartes() {
+    partes.forEach(parte => {
+      parte.style.display = "none"
+    })
+  }
+  
+  function reiniciar() {
+    palabraOculta = []
+    contadorErrores = 0
+    generarPalabra()
+    generarBotones()
+    ocultarPartes()
+  }
+  
+  
+    
+  reiniciar()
