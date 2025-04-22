@@ -21,3 +21,52 @@ function generarPalabra() {
       palabra.appendChild(span)
     }
   }
+
+  function generarBotones() {
+    const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    botonesContainer.innerHTML = ""
+  
+    for (let letra of letras) {
+      const boton = document.createElement("button")
+      boton.classList.add("boton")
+      boton.textContent = letra
+  
+      boton.addEventListener("click", () => {
+        verificarLetra(letra, boton)
+      });
+  
+      botonesContainer.appendChild(boton)
+    }
+  }
+  
+  function verificarLetra(letra, boton) {
+    boton.disabled = true
+    let acierto = false
+  
+    for (let i = 0; i < palabraElegida.length; i++) {
+      if (palabraElegida[i] === letra) {
+        palabra.children[i].textContent = letra
+        palabraOculta[i] = letra
+        acierto = true
+      }
+    }
+  
+    if (!acierto) {
+      contadorErrores++
+      dibujarAhorcado()
+    }
+  
+    if (!palabraOculta.includes("")) {
+      setTimeout(() => alert("Gano 🙋🏻 La palabra era: " + palabraElegida), 100)
+    }
+  
+    if (contadorErrores >= maxErrores) {
+      setTimeout(() => alert("Perdio 🤷🏻 La palabra era: " + palabraElegida), 100)
+    }
+  }
+  
+  function dibujarAhorcado() {
+    if (contadorErrores <= maxErrores) {
+      partes[contadorErrores - 1].style.display = "block"
+    }
+  }
